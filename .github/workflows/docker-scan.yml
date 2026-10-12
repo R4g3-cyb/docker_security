@@ -1,3 +1,7 @@
+name: Docker Image Scan
+
+on: [push, pull_request]
+
 jobs:
   docker-scan:
     runs-on: ubuntu-latest
