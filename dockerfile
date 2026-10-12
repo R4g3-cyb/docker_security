@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
-RUN useradd -m appuser
+FROM alpine:3.20
+RUN adduser -D appuser
 USER appuser
 CMD ["whoami"]
