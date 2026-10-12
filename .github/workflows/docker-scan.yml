@@ -1,0 +1,17 @@
+jobs:
+  docker-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t mi-imagen:${{ github.sha }} .
+
+      - name: Run Trivy image scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: image
+          image-ref: mi-imagen:${{ github.sha }}
+          severity: HIGH,CRITICAL
+          exit-code: 1
